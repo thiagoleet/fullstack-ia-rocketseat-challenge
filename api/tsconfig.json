@@ -16,9 +16,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node16",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
+      "@/*": ["./src/*"]
     }
   }
 }
