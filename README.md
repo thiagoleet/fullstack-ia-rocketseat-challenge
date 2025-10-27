@@ -102,7 +102,7 @@ Na raiz do projeto:
 pnpm dev
 ```
 
-## � Funcionalidades
+## 🎯 Funcionalidades
 
 - **Webhook Inspector API**: Captura e inspeciona requisições de webhook
 - **Interface Web**: Visualização e gerenciamento dos webhooks recebidos
