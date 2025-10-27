@@ -8,6 +8,7 @@ import {
 import { fastifySwagger } from "@fastify/swagger";
 import { fastifyCors } from "@fastify/cors";
 import ScalarApiReference from "@scalar/fastify-api-reference";
+import { listWebhooks } from "./routes/list-webhooks";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -36,6 +37,9 @@ app.register(fastifySwagger, {
 app.register(ScalarApiReference, {
   routePrefix: "/docs",
 });
+
+// Routes
+app.register(listWebhooks);
 
 app
   .listen({
