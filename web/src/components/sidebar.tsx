@@ -7,6 +7,12 @@ export function Sidebar() {
           <span className="font-normal text-zinc-400">inspect</span>
         </div>
       </div>
+
+      <div className="flex items-center gap-2 border-b border-zinc-700 bg-zinc-800 px-4 py-2.5">
+        <div className="flex-1 min-w-0 flex items-center gap-1 text-xs font-mono text-zinc-300">
+          <span className="truncate">http://localhost:3000/api/webhook</span>
+        </div>
+      </div>
     </div>
   );
 }
