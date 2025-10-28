@@ -15,7 +15,7 @@ function Index() {
     { key: "Method", value: "POST" },
     { key: "Status Code", value: "200" },
     { key: "Content-Type", value: "application/json" },
-    { key: "Content-Length", value: "1872 byes" },
+    { key: "Content-Length", value: "1872 bytes" },
   ];
 
   return (
