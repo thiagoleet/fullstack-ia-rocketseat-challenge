@@ -1,68 +1,26 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@theme inline {
+  --default-font-family: Geist, sans-serif;
+  --font-mono: JetBrains Mono, monospace;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /* Custom zinc palette - subtle dark backgrounds with light text */
+  --color-zinc-950: #0f0f11; /* Main background */
+  --color-zinc-900: #131316; /* Sidebar background (very subtle difference) */
+  --color-zinc-800: #18181b; /* Card/elevated background */
+  --color-zinc-700: #27272a; /* Borders */
+  --color-zinc-600: #3f3f46; /* Hover states */
+  --color-zinc-500: #52525b; /* Active/interactive */
+  --color-zinc-400: #a1a1aa; /* Muted text */
+  --color-zinc-300: #d4d4d8; /* Secondary text */
+  --color-zinc-200: #e4e4e7; /* Primary text */
+  --color-zinc-100: #f4f4f5; /* Bright text */
+  --color-zinc-50: #fafafa; /* Brightest highlights */
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+@layer base {
+ body {
+  @apply bg-zinc-950 text-zinc-100 antialiased
+ }
 }
