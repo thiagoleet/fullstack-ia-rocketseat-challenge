@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import { Sidebar } from "../components/sidebar";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -14,7 +15,7 @@ function Index() {
           minSize={15}
           maxSize={40}
         >
-          sidebar
+          <Sidebar />
         </Panel>
 
         <PanelResizeHandle className="w-px bg-zinc-700 hover:bg-zinc-600 transition-colors duration-150" />
