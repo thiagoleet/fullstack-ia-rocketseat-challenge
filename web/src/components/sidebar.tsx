@@ -1,3 +1,6 @@
+import { CopyIcon } from "lucide-react";
+import { IconButton } from "./ui/icon-button";
+
 export function Sidebar() {
   return (
     <div className="flex h-screen flex-col">
@@ -12,6 +15,10 @@ export function Sidebar() {
         <div className="flex-1 min-w-0 flex items-center gap-1 text-xs font-mono text-zinc-300">
           <span className="truncate">http://localhost:3000/api/webhook</span>
         </div>
+        <IconButton
+          icon={<CopyIcon />}
+          className="size-4"
+        />
       </div>
     </div>
   );
