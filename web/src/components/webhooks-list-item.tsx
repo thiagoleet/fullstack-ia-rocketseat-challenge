@@ -19,7 +19,8 @@ export function WebhooksListItem({ webhook }: WebhooksListItemProps) {
         <Checkbox />
 
         <Link
-          to="/"
+          to="/webhook/$id"
+          params={{ id: webhook.id }}
           className="flex flex-1 min-w-0 items-start gap-3"
         >
           <span className="w-12 shrink-0 font-mono text-xs font-semibold text-zinc-300 text-right">
