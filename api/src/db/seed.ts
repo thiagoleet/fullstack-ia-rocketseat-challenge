@@ -212,7 +212,7 @@ async function seed() {
             }
           : null,
         headers,
-        body: JSON.stringify(body),
+        body: JSON.stringify(body, null, 2),
         createdAt: faker.date.recent({ days: 30 }),
       });
     }
