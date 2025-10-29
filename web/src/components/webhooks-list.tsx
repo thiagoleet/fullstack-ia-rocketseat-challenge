@@ -14,7 +14,7 @@ export function WebhooksList() {
       queryFn: async ({ pageParam }) => {
         const url = new URL("http://localhost:3333/api/webhooks");
         if (pageParam) {
-          url.searchParams.set("cursor", pageParam ?? "");
+          url.searchParams.set("cursor", pageParam);
         }
 
         const response = await fetch(url);
