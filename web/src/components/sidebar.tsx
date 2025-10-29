@@ -1,15 +1,19 @@
 import { CopyIcon } from "lucide-react";
 import { IconButton } from "./ui/icon-button";
 import { WebhooksList } from "./webhooks-list";
+import { Link } from "@tanstack/react-router";
 
 export function Sidebar() {
   return (
     <nav className="flex h-screen flex-col">
       <div className="flex items-center justify-between border-b border-zinc-700 px-4 py-5">
-        <div className="flex items-baseline">
+        <Link
+          to="/"
+          className="flex items-baseline"
+        >
           <span className="font-semibold text-zinc-100">webhook</span>
           <span className="font-normal text-zinc-400">inspect</span>
-        </div>
+        </Link>
       </div>
 
       <div className="flex items-center gap-2 border-b border-zinc-700 bg-zinc-800 px-4 py-2.5">
