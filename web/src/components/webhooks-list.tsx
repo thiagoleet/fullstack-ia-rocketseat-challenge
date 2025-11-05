@@ -124,7 +124,7 @@ export function WebhooksList() {
             ) : (
               <>
                 <Wand2 className="size-4" />
-                Gerar Handler"
+                Gerar Handler
               </>
             )}
           </button>
