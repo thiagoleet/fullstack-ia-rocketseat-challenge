@@ -1,12 +1,15 @@
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
 import { webhookListSchema } from "../http/schemas/webhooks";
 import { WebhooksListItem } from "./webhooks-list-item";
-import { Activity, useEffect, useRef } from "react";
-import { Loader2Icon } from "lucide-react";
+import { Activity, useEffect, useRef, useState } from "react";
+import { Loader2Icon, Wand2 } from "lucide-react";
+import { twMerge } from "tailwind-merge";
 
 export function WebhooksList() {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver>(null);
+
+  const [checkedWebhooksIds, setCheckedWebhooksIds] = useState<string[]>([]);
 
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
@@ -28,6 +31,21 @@ export function WebhooksList() {
     });
 
   const webhooks = data.pages.flatMap((page) => page.webhooks);
+
+  function handleCheckWebhook(webhookId: string) {
+    if (checkedWebhooksIds.includes(webhookId)) {
+      setCheckedWebhooksIds((prev) => prev.filter((id) => id !== webhookId));
+      return;
+    }
+
+    setCheckedWebhooksIds((prev) => [...prev, webhookId]);
+  }
+
+  const hasAnyCheckedWebhooks = checkedWebhooksIds.length > 0;
+
+  function handleGenerateHandler() {
+    console.log("Generating handler for webhooks:", checkedWebhooksIds);
+  }
 
   useEffect(() => {
     if (observerRef.current) {
@@ -59,12 +77,31 @@ export function WebhooksList() {
   }, [hasNextPage, isFetchingNextPage, fetchNextPage]);
 
   return (
-    <div className="flex-1 overflow-y-auto">
+    <div className="flex-1 overflow-y-auto relative">
       <div className="space-y-1 p-2">
+        <button
+          disabled={!hasAnyCheckedWebhooks}
+          onClick={handleGenerateHandler}
+          className={twMerge(
+            "bg-indigo-400 text-white",
+            "w-full mb-3 py-2 px-4",
+            "rounded-lg font-medium text-sm",
+            "disabled:opacity-50 disabled:cursor-not-allowed",
+            "flex items-center justify-center gap-3"
+          )}
+        >
+          <Wand2 className="size-4" />
+          Gerar Handler
+        </button>
+      </div>
+
+      <div className="space-y-1 p-2 mt-2">
         {webhooks.map((webhook) => (
           <WebhooksListItem
             key={webhook.id}
             webhook={webhook}
+            onWebhookChecked={() => handleCheckWebhook(webhook.id)}
+            isWebhookChecked={checkedWebhooksIds.includes(webhook.id)}
           />
         ))}
 
