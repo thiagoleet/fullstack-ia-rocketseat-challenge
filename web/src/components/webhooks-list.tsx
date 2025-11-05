@@ -4,12 +4,16 @@ import { WebhooksListItem } from "./webhooks-list-item";
 import { Activity, useEffect, useRef, useState } from "react";
 import { Loader2Icon, Wand2 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
+import type { GeneratedResponse } from "../http/schemas/generated-response";
 
 export function WebhooksList() {
   const loadMoreRef = useRef<HTMLDivElement>(null);
   const observerRef = useRef<IntersectionObserver>(null);
 
   const [checkedWebhooksIds, setCheckedWebhooksIds] = useState<string[]>([]);
+  const [generatedHandlerCode, setGeneratedHandlerCode] = useState<
+    string | null
+  >(null);
 
   const { data, hasNextPage, fetchNextPage, isFetchingNextPage } =
     useSuspenseInfiniteQuery({
@@ -43,8 +47,17 @@ export function WebhooksList() {
 
   const hasAnyCheckedWebhooks = checkedWebhooksIds.length > 0;
 
-  function handleGenerateHandler() {
-    console.log("Generating handler for webhooks:", checkedWebhooksIds);
+  async function handleGenerateHandler() {
+    const response = await fetch("http://localhost:3333/api/generate", {
+      method: "POST",
+      body: JSON.stringify({ webhooksIds: checkedWebhooksIds }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data: GeneratedResponse = await response.json();
+    setGeneratedHandlerCode(data.code);
   }
 
   useEffect(() => {
@@ -87,7 +100,9 @@ export function WebhooksList() {
             "w-full mb-3 py-2 px-4",
             "rounded-lg font-medium text-sm",
             "disabled:opacity-50 disabled:cursor-not-allowed",
-            "flex items-center justify-center gap-3"
+            "flex items-center justify-center gap-3",
+            "cursor-pointer",
+            "hover:bg-indigo-500 transition-colors"
           )}
         >
           <Wand2 className="size-4" />
